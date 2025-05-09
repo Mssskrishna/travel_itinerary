@@ -12,6 +12,10 @@ interface ActivitiesProps {
 
 const Activities = ({ remainingColor }: ActivitiesProps): JSX.Element => {
   const colorScheme = useColorScheme();
+  const theme = useColorScheme() ?? "light";
+  console.log(theme);
+  const activityColor = theme === "light" ? "#fff" : "#292929";
+  const headColor = theme === "light" ? "#fff" : "#000";
   const activeColor = Colors[colorScheme ?? "light"].primaryColor;
   return (
     <View>
@@ -53,7 +57,7 @@ const Activities = ({ remainingColor }: ActivitiesProps): JSX.Element => {
               borderRadius: 10,
             }}
           >
-            <ThemedText style={{ color: "black" }}>Day Plan</ThemedText>
+            <ThemedText style={{ color: headColor }}>Day Plan</ThemedText>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -95,7 +99,7 @@ const Activities = ({ remainingColor }: ActivitiesProps): JSX.Element => {
                       transform: [{ rotate: "270deg" }],
                       padding: 8,
                       backgroundColor: activeColor,
-                      color: "white",
+                      color: activityColor,
                       height: "100%",
                       borderTopLeftRadius: 10,
                       borderTopRightRadius: 10,
@@ -107,7 +111,7 @@ const Activities = ({ remainingColor }: ActivitiesProps): JSX.Element => {
                   <View
                     style={{
                       marginHorizontal: 10,
-                      backgroundColor: "#292929",
+                      backgroundColor: activityColor,
                       paddingHorizontal: 10,
                       marginLeft: -10,
                     }}

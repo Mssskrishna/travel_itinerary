@@ -1,5 +1,6 @@
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { useColorScheme } from "@/hooks/useColorScheme";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useState } from "react";
@@ -17,29 +18,32 @@ import {
 export default function onboard() {
   const [name, setName] = useState("");
   const [button, setButton] = useState("");
+  const theme = useColorScheme();
+  const activeColor = theme === "light" ? "#fff" : "#292929";
+  const placeHolderColor = theme === "light" ? "#333333" : "#fff";
   return (
     <SafeAreaView style={styles.container}>
       <ThemedView style={styles.inside}>
-        <ThemedText style={{ fontSize: 25, fontWeight: 900 }}>
+        <ThemedText style={{ fontSize: 23, lineHeight: 30 }}>
           Plan your Journey, Your Way !
         </ThemedText>
-        <ThemedText style={{ fontSize: 15 }}>
+        <ThemedText style={{ fontSize: 13 }}>
           Let's create your personalized travel experience
         </ThemedText>
-        <ThemedText style={{ marginTop: 30, width: "100%", fontSize: 20 }}>
+        <ThemedText style={{ marginTop: 30, fontSize: 20 }}>
           Where would you like to go?
         </ThemedText>
         <ThemedView style={{ flexDirection: "row", alignItems: "center" }}>
           <Ionicons
             name="search-outline"
             size={20}
-            color="#fff"
+            color={placeHolderColor}
             style={styles.icon}
           />
           <TextInput
-            style={styles.input}
+            style={[styles.input, { backgroundColor: activeColor }]}
             placeholder="Enter Destination"
-            placeholderTextColor="#fff"
+            placeholderTextColor={placeHolderColor}
             value={name}
             onChangeText={setName}
           />
@@ -52,13 +56,13 @@ export default function onboard() {
           <Ionicons
             name="calendar"
             size={20}
-            color="#fff"
+            color={placeHolderColor}
             style={styles.icon}
           />
           <TextInput
-            style={styles.input}
+            style={[styles.input, { backgroundColor: activeColor }]}
             placeholder="Select Duration"
-            placeholderTextColor="#888"
+            placeholderTextColor={placeHolderColor}
             value={name}
 
             // onChangeText={setName}
@@ -66,7 +70,7 @@ export default function onboard() {
           <Ionicons
             name="arrow-down"
             size={20}
-            color="#fff"
+            color="#333333"
             style={styles.icon2}
           />
         </ThemedView>
@@ -87,7 +91,7 @@ export default function onboard() {
               <TouchableOpacity
                 style={{
                   backgroundColor:
-                    button === item.item ? "#333333" : "#33333399",
+                    button === item.item ? "#33333333" : "#33333322",
                   padding: 20,
                   margin: 10,
                   flexDirection: "row",
@@ -102,7 +106,7 @@ export default function onboard() {
                 <MaterialCommunityIcons
                   name={item.icon}
                   size={24}
-                  color={"#fff"}
+                  color={placeHolderColor}
                 />
                 <ThemedText style={{ fontSize: 17 }}>{item.item}</ThemedText>
               </TouchableOpacity>
@@ -141,7 +145,9 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     padding: 15,
     borderRadius: 6,
-    backgroundColor: "#333333",
+    borderColor: "#333333",
+    borderWidth: 1,
+    backgroundColor: "#fff",
     color: "#fff",
     flex: 1,
     paddingLeft: 40,

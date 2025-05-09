@@ -1,6 +1,7 @@
 import { View, Text, FlatList, Image } from "react-native";
 import React, { JSX } from "react";
 import { ThemedText } from "./ThemedText";
+import { useColorScheme } from "@/hooks/useColorScheme";
 
 const images = {
   place1: require("@/assets/images/place1.png"),
@@ -19,6 +20,8 @@ const ActvityList = ({
   remainingColor,
   activeColor,
 }: HotelsProps): JSX.Element => {
+  const theme = useColorScheme() ?? "light";
+  const headColor = theme === "light" ? "#fff" : "#000";
   return (
     <View>
       <View
@@ -34,7 +37,7 @@ const ActvityList = ({
             marginHorizontal: 10,
             borderWidth: 1,
             backgroundColor: activeColor,
-            color: "black",
+            color: headColor,
             paddingHorizontal: 2,
             borderRadius: 10,
           }}
